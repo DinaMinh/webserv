@@ -1,4 +1,4 @@
-NAME := webserv
+NAME := ft_irc
 
 CXX := c++
 
@@ -6,7 +6,7 @@ INCLUDES := ./includes/
 
 CXXFLAGS := -Wall -Wextra -Werror -I$(INCLUDES) -MMD -std=c++98
 
-SRCS := main.cpp
+SRCS := main.cpp ParametersException.class.cpp Socket.class.cpp
 
 SRC_DIR := ./srcs/
 

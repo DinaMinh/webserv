@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   ParametersException.class.cpp                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dminh <dminh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/16 08:55:37 by dminh             #+#    #+#             */
-/*   Updated: 2026/08/20 16:19:51 by dminh            ###   ########.fr       */
+/*   Created: 2026/08/20 16:10:42 by dminh             #+#    #+#             */
+/*   Updated: 2026/08/20 16:10:42 by dminh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_irc.hpp"
+#include "ParametersException.class.hpp"
 
-int	main(int ac, char **av)
+ParametersException::ParametersException(const char *err)
+:	_err(err)
+{}
+
+const char	*ParametersException::what() const throw()
 {
-	try
-	{
-		if (ac != 3)
-			throw (ParametersException(WRONG_PARAMS));
-		std::cout << "port = " << av[1] << ", client = " << av[2] << std::endl;
-		Socket	sock(av[1], av[2]);
-	}
-	catch (std::exception &e)
-	{ std::cout << e.what() << std::endl; }
-	return (0);
+	return (this->_err);
 }
