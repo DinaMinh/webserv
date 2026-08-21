@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_irc.hpp                                         :+:      :+:    :+:   */
+/*   Server.class.hpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dminh <dminh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/16 08:56:15 by dminh             #+#    #+#             */
-/*   Updated: 2026/08/20 16:27:06 by dminh            ###   ########.fr       */
+/*   Created: 2026/08/21 10:58:04 by dminh             #+#    #+#             */
+/*   Updated: 2026/08/21 10:58:04 by dminh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WEBSERV_HPP
-# define WEBSERV_HPP
+#ifndef	SERVER_CLASS_HPP
+# define SERVER_CLASS_HPP
 
 # include <iostream>
 
-# include <sys/socket.h>
+class	ASocket;
 
-# include "ParametersException.class.hpp"
-# include "ASocket.class.hpp"
-# include "Server.class.hpp"
-
-# define WRONG_PARAMS "error: Execution requires 2 parameters."
-# define MIN_PORT 0
-# define MAX_PORT 65535
-
+class	Server : public ASocket
+{
+	private:
+	public:
+		Server(const std::string &port, const std::string &pass);
+		Server(const Server &cpy);
+		~Server(void);
+		Server	&operator=(const Server &src);
+		void	establishConnection(void);
+};
 
 #endif
+

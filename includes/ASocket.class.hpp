@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Socket.class.hpp                                   :+:      :+:    :+:   */
+/*   ASocket.class.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dminh <dminh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 16:47:52 by dminh             #+#    #+#             */
-/*   Updated: 2026/08/20 18:30:22 by dminh            ###   ########.fr       */
+/*   Updated: 2026/08/21 13:51:13 by dminh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	SOCKET_CLASS_HPP
-# define SOCKET_CLASS_HPP
+#ifndef	ASOCKET_CLASS_HPP
+# define ASOCKET_CLASS_HPP
 
 # include <iostream>
 # include <sys/socket.h>
@@ -19,6 +19,7 @@
 # include <netinet/in.h>
 # include <cstdlib>
 # include <cstring>
+# include <unistd.h>
 
 /*	AF_INET: Ipv4
  *	SOCK_STREAM: TCP
@@ -30,19 +31,25 @@
 # define PROTOCOL 0
 # define LOC_HOST "127.0.0.1"
 
-class	Socket
+class	ASocket
 {
-	private:
-		Socket(const Socket &cpy);
-		Socket	&operator=(const Socket &src);
+	protected:
+		ASocket(const ASocket &cpy);
+		ASocket	&operator=(const ASocket &src);
 		const std::string	_host;
 		const std::string	_port;
 		const std::string	_pass;
+		bool				_running;
 		struct sockaddr_in	_addr;
-		int					_sock;
+		int					_serv_fd;
 	public:
-		Socket(const std::string &port, const std::string &pass);
-		~Socket(void);
+		ASocket(const std::string &port, const std::string &pass);
+		~ASocket(void);
+		virtual void	establishConnection (void) = 0;
+		bool	getRun(void) const;
+		void	setRun(bool val);
+		void	closeFd(void);
+		
 };
 
 #endif
