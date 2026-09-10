@@ -6,7 +6,7 @@
 /*   By: dminh <dminh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 11:00:47 by dminh             #+#    #+#             */
-/*   Updated: 2026/09/10 15:05:06 by dminh            ###   ########.fr       */
+/*   Updated: 2026/09/10 15:33:16 by dminh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,11 @@ void	Server::establishConnection(void)
 		std::cout << "Couldn't start listening." << std::endl;
 	else
 		std::cout << "Listening." << std::endl;
+		
+}
+
+void	Server::receiveData(void)
+{
 	this->_accept_sock = accept(this->_serv_fd, NULL, NULL);
 	if (this->_accept_sock == -1)
 		throw std::runtime_error("error: Couldn't accept the connection");
@@ -53,7 +58,6 @@ void	Server::establishConnection(void)
 		throw std::runtime_error("error: Couldn't receive data");
 	else
 		std::cout<< "Received : " << _buf << std::endl;
-		
 }
 
 void	Server::closeFd(void)

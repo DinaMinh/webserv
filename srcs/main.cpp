@@ -6,7 +6,7 @@
 /*   By: dminh <dminh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 08:55:37 by dminh             #+#    #+#             */
-/*   Updated: 2026/09/09 12:36:20 by dminh            ###   ########.fr       */
+/*   Updated: 2026/09/10 15:32:00 by dminh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,10 @@ int	main(int ac, char **av)
 		checkParams(ac, av);
 		std::cout << "port = " << av[1] << ", client = " << av[2] << std::endl;
 		Server	sock(av[1], av[2]);
-		//Client	c_sock(av[1], av[2]);
 		sock.establishConnection();
 		std::string	msg;
 		while (sock.getRun())
-		{
-			std::getline(std::cin, msg);
-			if (msg == "leave")
-				sock.setRun(false);
-		//	else if (msg == "client")
-		//		c_sock.establishConnection();
-		}
+			sock.receiveData();
 	}
 	catch (std::exception &e)
 	{ std::cout << e.what() << std::endl; }

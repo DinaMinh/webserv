@@ -31,6 +31,7 @@ class	Server : public ASocket
 		Server	&operator=(const Server &src);
 		void	establishConnection(void);
 		void	closeFd(void);
+		void	receiveData(void);
 		int		getAcceptSock(void) const;
 };
 
