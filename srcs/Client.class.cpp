@@ -6,7 +6,7 @@
 /*   By: dminh <dminh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/10 11:46:46 by dminh             #+#    #+#             */
-/*   Updated: 2026/09/10 14:36:02 by dminh            ###   ########.fr       */
+/*   Updated: 2026/09/10 15:04:42 by dminh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,14 @@ void	Client::establishConnection(void)
 		throw std::runtime_error("error: Couldn't connect to server");
 	else
 		std::cout << "Connection OK" << std::endl;
-	return ;
+	std::string	msg;
+	std::getline(std::cin, msg);
+	int bytes = send(this->_client_fd, msg.c_str(), 200, 0);
+	if (bytes < 0)
+		throw std::runtime_error("error: Couldn't send data to server");
+	else
+		std::cout << "Message sent ! (" << bytes << "bytes" << std::endl;
+
 }
 
 void	Client::closeFd(void)

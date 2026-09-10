@@ -21,6 +21,9 @@ class	Server : public ASocket
 {
 	private:
 		int					_serv_fd;
+		int					_accept_sock;
+		int					_bytes;
+		char				_buf[200];
 	public:
 		Server(const std::string &port, const std::string &pass);
 		Server(const Server &cpy);
@@ -28,6 +31,7 @@ class	Server : public ASocket
 		Server	&operator=(const Server &src);
 		void	establishConnection(void);
 		void	closeFd(void);
+		int		getAcceptSock(void) const;
 };
 
 #endif
