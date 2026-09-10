@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Server.class.hpp                                   :+:      :+:    :+:   */
+/*   Client.class.hpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dminh <dminh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/21 10:58:04 by dminh             #+#    #+#             */
-/*   Updated: 2026/09/10 11:42:07 by dminh            ###   ########.fr       */
+/*   Created: 2026/09/10 11:46:05 by dminh             #+#    #+#             */
+/*   Updated: 2026/09/10 13:13:49 by dminh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	SERVER_CLASS_HPP
-# define SERVER_CLASS_HPP
+#ifndef	CLIENT_CLASS_HPP
+# define CLIENT_CLASS_HPP
 
 # include <iostream>
 
 class	ASocket;
 
-class	Server : public ASocket
+class	Client : public ASocket
 {
 	private:
-		int					_serv_fd;
+		int					_client_fd;
 	public:
-		Server(const std::string &port, const std::string &pass);
-		Server(const Server &cpy);
-		~Server(void);
-		Server	&operator=(const Server &src);
+		Client(const std::string &port, const std::string &pw);
+		Client(const Client &cpy);
+		~Client(void);
+		Client	&operator=(const Client &src);
 		void	establishConnection(void);
 		void	closeFd(void);
 };

@@ -20,6 +20,7 @@
 # include "ParametersException.class.hpp"
 # include "ASocket.class.hpp"
 # include "Server.class.hpp"
+# include "Client.class.hpp"
 
 # define WRONG_PARAMS "error: Execution requires 2 parameters."
 # define MIN_PORT 0

@@ -6,7 +6,7 @@
 /*   By: dminh <dminh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 16:47:52 by dminh             #+#    #+#             */
-/*   Updated: 2026/08/21 13:51:13 by dminh            ###   ########.fr       */
+/*   Updated: 2026/09/10 11:41:48 by dminh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,16 @@ class	ASocket
 		ASocket	&operator=(const ASocket &src);
 		const std::string	_host;
 		const std::string	_port;
-		const std::string	_pass;
+		const std::string	_pw;
 		bool				_running;
 		struct sockaddr_in	_addr;
-		int					_serv_fd;
 	public:
 		ASocket(const std::string &port, const std::string &pass);
 		~ASocket(void);
 		virtual void	establishConnection (void) = 0;
 		bool	getRun(void) const;
 		void	setRun(bool val);
-		void	closeFd(void);
+		virtual void	closeFd(void) = 0;
 		
 };
 
