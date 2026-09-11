@@ -6,22 +6,20 @@
 /*   By: dminh <dminh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/10 11:46:46 by dminh             #+#    #+#             */
-/*   Updated: 2026/09/10 15:04:42 by dminh            ###   ########.fr       */
+/*   Updated: 2026/09/11 16:03:08 by dminh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ASocket.class.hpp"
 #include "Client.class.hpp"
 
-Client::Client(const std::string &port, const std::string &pw)
-:	ASocket(port, pw)
+Client::Client(int socket)
+:	_fd(socket)
 {
-	if ((this->_client_fd = socket(DOMAIN, TYPE, PROTOCOL)) == 0)
-		throw	std::runtime_error("error: Couldn't open the socket.");
 }
 
 Client::Client(const Client &cpy)
-:	ASocket(cpy._port, cpy._pw)
+:	_buf(cpy._buf), _username(cpy._username), _nickname(cpy._nickname),
+	_ip(cpy._ip), _fd(cpy._fd)
 {
 }
 
@@ -29,34 +27,13 @@ Client	&Client::operator=(const Client &src)
 {
 	if (this != &src)
 	{
+		this->_buf = src._buf;
+		this->_username = src._username;
+		this->_nickname = src._nickname;
+		this->_ip = src._ip;
+		this->_fd = src._fd;
 	}
 	return (*this);
-}
-
-void	Client::establishConnection(void)
-{
-	memset(&this->_addr, 0, sizeof(this->_addr));
-	this->_addr.sin_family = AF_INET;
-	this->_addr.sin_addr.s_addr = INADDR_ANY;
-	this->_addr.sin_port = htons(atoi(this->_port.c_str()));
-	if (connect(this->_client_fd, (sockaddr *)&this->_addr,
-			sizeof(this->_addr)) < 0)
-		throw std::runtime_error("error: Couldn't connect to server");
-	else
-		std::cout << "Connection OK" << std::endl;
-	std::string	msg;
-	std::getline(std::cin, msg);
-	int bytes = send(this->_client_fd, msg.c_str(), 200, 0);
-	if (bytes < 0)
-		throw std::runtime_error("error: Couldn't send data to server");
-	else
-		std::cout << "Message sent ! (" << bytes << "bytes" << std::endl;
-
-}
-
-void	Client::closeFd(void)
-{
-	return ;
 }
 
 Client::~Client(void)

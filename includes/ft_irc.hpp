@@ -6,7 +6,7 @@
 /*   By: dminh <dminh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 08:56:15 by dminh             #+#    #+#             */
-/*   Updated: 2026/08/20 16:27:06 by dminh            ###   ########.fr       */
+/*   Updated: 2026/09/11 15:24:00 by dminh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <iostream>
 
 # include <sys/socket.h>
+# include <sys/epoll.h>
+# include <fcntl.h>
 
 # include "ParametersException.class.hpp"
 # include "ASocket.class.hpp"

@@ -6,7 +6,7 @@
 /*   By: dminh <dminh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/10 11:46:05 by dminh             #+#    #+#             */
-/*   Updated: 2026/09/10 13:13:49 by dminh            ###   ########.fr       */
+/*   Updated: 2026/09/11 13:15:32 by dminh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,21 @@
 # define CLIENT_CLASS_HPP
 
 # include <iostream>
+# include <unistd.h>
 
-class	ASocket;
-
-class	Client : public ASocket
+class	Client
 {
 	private:
-		int					_client_fd;
+		std::string	_buf;
+		std::string	_username;
+		std::string	_nickname;
+		std::string	_ip;
+		int			_fd;
 	public:
-		Client(const std::string &port, const std::string &pw);
+		Client(int socket);
 		Client(const Client &cpy);
 		~Client(void);
 		Client	&operator=(const Client &src);
-		void	establishConnection(void);
-		void	closeFd(void);
 };
 
 #endif
-
